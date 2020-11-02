@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data class="SimpleDiffUtilItemLayoutBinding">
+        <variable
+            name="imageUrl"
+            type="String" />
+        <variable
+            name="title"
+            type="String" />
+        <variable
+            name="message"
+            type="String" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/iv_user_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:simple_diff_util_image_url="@{imageUrl}"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/iv_user_image"
+        android:singleLine="true"
+        app:layout_constraintTop_toTopOf="@id/iv_user_image"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="@{title}"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/tv_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        android:singleLine="true"
+        android:layout_marginTop="24dp"
+        android:textColor="@android:color/black"
+        android:text="@{message}"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
