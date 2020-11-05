@@ -1,10 +1,11 @@
-package com.example.diffutilexample.view
+package com.example.diffutilexample.view_life_cycle_aware
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.diffutilexample.BaseFragment
@@ -12,12 +13,16 @@ import com.example.diffutilexample.DiffUtilViewModel
 import com.example.diffutilexample.R
 import com.example.diffutilexample.databinding.SimpleDiffUtilExampleLayoutBinding
 
-class SimpleDiffUtilExampleFragment: BaseFragment() {
+class SimpleDiffUtilWithLifeCycleAwareFragment: BaseFragment() {
 
     private val viewModel= DiffUtilViewModel()
 
-    private val adapter:SimpleDiffUtilAdapter by lazy {
-        SimpleDiffUtilAdapter()
+    private val adapter: SimpleDiffUtilWithLifeCycleAwareAdapter by lazy {
+        SimpleDiffUtilWithLifeCycleAwareAdapter(object: SimpleDiffUtilWithLifeCycleAwareAdapter.ViewClick{
+            override fun onFavButtonClick(): LiveData<Boolean> {
+                return viewModel.favButtonClickedObserver()
+            }
+        } )
     }
 
     private var binding: SimpleDiffUtilExampleLayoutBinding?= null
@@ -46,5 +51,5 @@ class SimpleDiffUtilExampleFragment: BaseFragment() {
         }
     }
 
-    override fun provideScreenTitle() = "Simple Diff CallBack Example"
+    override fun provideScreenTitle() = "Simple Diff CallBack LCA Example"
 }

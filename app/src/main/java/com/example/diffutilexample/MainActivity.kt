@@ -4,10 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.example.diffutilexample.view.SimpleDiffUtilExampleFragment
+import com.example.diffutilexample.view_life_cycle_aware.SimpleDiffUtilWithLifeCycleAwareFragment
 
 class MainActivity : AppCompatActivity() {
 
-    private val currentFragment: BaseFragment? = supportFragmentManager.findFragmentById(R.id.container) as? BaseFragment //supportFragmentManager.findFragmentById(R.id.container) as? BaseFragment
+    private fun getCurrentFragment(): BaseFragment? = supportFragmentManager.findFragmentById(R.id.container) as? BaseFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,12 +16,12 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.container, SimpleDiffUtilExampleFragment(), SimpleDiffUtilExampleFragment::class.java.canonicalName)
-            .addToBackStack(SimpleDiffUtilExampleFragment::class.java.canonicalName)
+            .add(R.id.container, SimpleDiffUtilWithLifeCycleAwareFragment(), SimpleDiffUtilWithLifeCycleAwareFragment::class.java.canonicalName)
+            .addToBackStack(SimpleDiffUtilWithLifeCycleAwareFragment::class.java.canonicalName)
             .commit();
-        supportActionBar?.title = "Transaction"
+
         supportFragmentManager.addOnBackStackChangedListener {
-            //manageToolBar(currentFragment)
+            manageToolBar(getCurrentFragment())
         }
     }
 

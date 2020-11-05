@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.diffutilexample.CustomModel
 import com.example.diffutilexample.R
 import com.example.diffutilexample.adapter.CoreDiffUtilAdapter
 import com.example.diffutilexample.databinding.SimpleDiffUtilItemLayoutBinding

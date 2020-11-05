@@ -1,4 +1,4 @@
-package com.example.diffutilexample.view
+package com.example.diffutilexample
 
 data class CustomModel(
     var url: String = "",
